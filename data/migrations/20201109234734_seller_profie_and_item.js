@@ -6,6 +6,8 @@ exports.up = function (knex) {
       tb.string('email_address', 255);
       tb.string('phone_number', 255);
       tb.string('physical_address', 255);
+      tb.time('open_time');
+      tb.time('closing_time');
       tb.text('description');
     })
     .createTable('category', (tb) => {
