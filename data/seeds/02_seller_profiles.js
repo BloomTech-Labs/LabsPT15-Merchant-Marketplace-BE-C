@@ -7,6 +7,8 @@ exports.seed = function (knex) {
       email_address: 'llama001@maildrop.cc',
       phone_number: '(555) 444-3333',
       physical_address: '100 Davidson Street, Maine',
+      open_time: '9:00',
+      closing_time: '16:30',
       description: 'Rugs, Rugs, Rugs! Discount Rugs, Fine Rugs, Bathroom Rugs!',
     },
 
@@ -16,6 +18,8 @@ exports.seed = function (knex) {
       email_address: 'llama002@maildrop.cc',
       phone_number: '(555) 123-4567',
       physical_address: '35 Sampsonite Avenue, Lingdon Nevada, 22556',
+      open_time: '4:20',
+      closing_time: '14:15',
       description:
         'Selling my personal Junk: Hawaiian shirts, mixed ammunition, unmatched fine china.',
     },
@@ -26,6 +30,8 @@ exports.seed = function (knex) {
       email_address: 'llama003@maildrop.cc',
       phone_number: '(555) 987-6543',
       physical_address: '1378 California Drive, California, 00012',
+      open_time: '12:00',
+      closing_time: '20:00',
       description: 'Books, Rockets, Washington News Media',
     },
   ]);
