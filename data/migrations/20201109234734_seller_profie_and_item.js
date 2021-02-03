@@ -75,6 +75,12 @@ exports.up = function (knex) {
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
     });
+    .createTable('fav_items', (tbl) => {
+      tb.integer('seller_profile_id')
+        .unsigned()
+        .notNullable()
+        .references('id').inTable('users')
+    })
 };
 
 exports.down = function (knex) {
