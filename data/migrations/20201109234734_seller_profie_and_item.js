@@ -32,6 +32,42 @@ exports.up = function (knex) {
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
     })
+    .createTable('shopping_cart', (tb) => {
+      tb.string('item_name_id')
+        .notNullable()
+        .references('id')
+        .inTable('item')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE');
+      tb.integer('quantity_available').notNullable().unsigned().defaultTo(0)
+        .notNullable()
+        .references('quantity_available')
+        .inTable('item')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE');
+      tb.integer('price_in_cents').notNullable().unsigned();
+      tb.string('seller_profile_id')
+        .notNullable()
+        .references('id')
+        .references('seller_name')
+        .inTable('seller_profile')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE');
+      tb.string("photo_id")
+        .notNullable()
+        .references('id')
+        .inTable('photo')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE');
+      tb.string("photo_url")
+        .notNullable()
+        .references('url')
+        .inTable('photo')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE');
+
+    })
+
     .createTable('photo', (tb) => {
       tb.increments();
       tb.string('url', 255);
