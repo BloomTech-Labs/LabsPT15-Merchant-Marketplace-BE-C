@@ -23,7 +23,7 @@ const indexRouter = require('./index/indexRouter');
 const profileRouter = require('./profile/profileRouter');
 
 const itemsRouter = require('./items/itemsRouter');
-
+const shoppingcartRouter = require("./shopping_cart/shoppingcartRouter")
 const tagRouter = require('./tag/tagRouter');
 const photoRouter = require('./photo/photoRouter');
 const categoryRouter = require('./category/categoryRouter');
@@ -55,6 +55,7 @@ app.use(cookieParser());
 // application routes
 app.use('/', indexRouter);
 app.use(['/profile', '/profiles'], profileRouter);
+app.use(["/shopping_cart"], shoppingcartRouter)
 app.use(['/item', '/items'], itemsRouter);
 app.use(['/tag', '/tags'], tagRouter);
 app.use(['/photo', '/photos'], photoRouter);

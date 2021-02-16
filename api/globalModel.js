@@ -65,6 +65,14 @@ const getCategoryItem = async (itemID) => {
     .where('ci.item_id', itemID)
     .returning('*');
 };
+// Get info from join table
+const getShoppingCart = async (itemID) => {
+    return db('item as i')
+      .join('shopping_cart as sc', 'i.id', 'sc.item_id')
+      .join('photo', 'photo.id', 'sc.photo_id')
+      .where('sc.item_id', itemID)
+      .returning('*');
+  };
 
 // GET info from join table
 const getPhotoByItemID = async (itemID) => {
@@ -92,6 +100,7 @@ module.exports = {
   findOrCreate,
   findAllProducts,
   getCategoryItem,
+  getShoppingCart,
   getTagByItemId,
   createAndInsertById,
   getPhotoByItemID,

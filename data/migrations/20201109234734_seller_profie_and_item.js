@@ -64,6 +64,26 @@ exports.up = function (knex) {
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
     })
+    .createTable('fav_lists', (tb) => {
+      tb.increments()
+      tb.string('list_name', 128)
+        .notNullable();
+      tb.string('seller_profile_id')
+        .unsigned()
+        .notNullable()
+        .references('id').inTable('seller_profile')
+      tb.integer('item_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('item')
+      tb.integer("photo_id")
+        .notNullable()
+        .references('id')
+        .inTable('photo')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE');
+    })
     
     .createTable('category_item', (tb) => {
       tb.integer('item_id')
@@ -104,6 +124,7 @@ exports.down = function (knex) {
     .dropTableIfExists('tag_item')
     .dropTableIfExists('category_item')
     .dropTableIfExists('shopping_cart')
+    .dropTableIfExists('fav_lists')
     .dropTableIfExists('photo')
     .dropTableIfExists('item')
     .dropTableIfExists('tag')
