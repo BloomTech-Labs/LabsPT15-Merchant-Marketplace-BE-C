@@ -117,19 +117,6 @@ exports.up = function (knex) {
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
     });
-    .createTable('fav_lists', (tb) => {
-      tb.increments()
-      tb.string('list_name', 128)
-        .notNullable();
-      tb.integer('seller_profile_id')
-        .unsigned()
-        .notNullable()
-        .references('id').inTable('users')
-      tb.integer('item_id')
-        .unsigned()
-        .notNullable()
-    })
-    .createTable()
 };
 
 exports.down = function (knex) {

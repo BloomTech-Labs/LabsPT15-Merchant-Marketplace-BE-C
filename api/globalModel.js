@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const db = require('../data/db-config');
 
 const findAll = async (text) => {
@@ -66,12 +67,18 @@ const getCategoryItem = async (itemID) => {
     .returning('*');
 };
 // Get info from join table
-const getShoppingCart = async (itemID) => {
-    return db('item as i')
-      .join('shopping_cart as sc', 'i.id', 'sc.item_id')
-      .join('photo', 'photo.id', 'sc.photo_id')
-      .where('sc.item_id', itemID)
-      .returning('*');
+const getShoppingCart = async (seller_profileID) => {
+      return db('shopping_cart')
+        .innerJoin('seller_profile', 'shopping_cart.seller_profile_id', 'seller_profile.id')
+        .innerJoin('photo', 'shopping_cart.photo_id', 'photo.id')
+        .innerJoin('item', 'shopping_cart.item_id', 'item.id')
+        .where('shopping_cart.seller_profile_id', seller_profileID)
+        .select(
+          'item.item_name', 
+          'item.description',
+          'item.price_in_cents',
+          'item.seller_profile_id',
+          'photo.url')
   };
 
 // GET info from join table
