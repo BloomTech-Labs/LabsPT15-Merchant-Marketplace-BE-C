@@ -78,6 +78,7 @@ const getShoppingCart = async (seller_profileID) => {
           'item.description',
           'item.price_in_cents',
           'item.seller_profile_id',
+          "item.quantity_available",
           'photo.url')
   };
 
@@ -96,7 +97,6 @@ const getFavList = async (seller_profileID) => {
     "item.seller_profile_id",
     "item.quantity_available",
     "photo.url"
-
   )
   
 };

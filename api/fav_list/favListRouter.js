@@ -1,10 +1,11 @@
 const express = require('express');
 const Model = require('../globalModel');
+const authRequired = require('../middleware/authRequired');
 
 const helper = require('../helper');
 const router = express.Router();
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', authRequired, async (req, res) => {
     const seller_profileID = req.params.id;
     const response = await Model.getFavList(seller_profileID);
     try {
