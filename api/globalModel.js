@@ -74,6 +74,26 @@ const getShoppingCart = async (itemID) => {
       .returning('*');
   };
 
+
+const getFavList = async (seller_profileID) => {
+  return db("fav_lists as fl")
+  .join("seller_profile", "fl.seller_profile_id", "seller_profile.id", )
+  .join("item", "fl.item_id", "item.id")
+  .join("photo", "fl.photo_id", "photo.id")
+  .where("fl.seller_profile_id", seller_profileID)
+  .select(
+    "fl.list_name",
+    "item.item_name",
+    "item.description",
+    "item.price_in_cents",
+    "item.seller_profile_id",
+    "item.quantity_available",
+    "photo.url"
+
+  )
+  
+};
+
 // GET info from join table
 const getPhotoByItemID = async (itemID) => {
   return db('photo').where({ item_id: itemID }).select('*');
@@ -101,6 +121,7 @@ module.exports = {
   findAllProducts,
   getCategoryItem,
   getShoppingCart,
+  getFavList,
   getTagByItemId,
   createAndInsertById,
   getPhotoByItemID,
@@ -108,3 +129,5 @@ module.exports = {
   connectItemsAndCategories,
   connectItemsAndTags,
 };
+
+
